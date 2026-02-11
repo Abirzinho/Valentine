@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Be My Valentine?</title>
 
+  <!-- Confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <style>
@@ -77,21 +78,27 @@
     </div>
   </div>
 
+  <!-- Hidden audio -->
+  <audio id="song" src="George Michael - Careless Whisper (Lyrics).mp3"></audio>
+
   <script>
     const noButton = document.getElementById("no");
     const yesButton = document.getElementById("yes");
     const question = document.getElementById("question");
+    const song = document.getElementById("song");
 
-    // Desktop-focused runaway effect
+    // Make "No" button run away
     noButton.addEventListener("mouseenter", () => {
       const moveX = (Math.random() - 0.5) * 300;
       const moveY = (Math.random() - 0.5) * 200;
       noButton.style.transform = `translate(${moveX}px, ${moveY}px)`;
     });
 
+    // Click Yes: confetti + song
     yesButton.addEventListener("click", () => {
-      question.innerHTML = "YAY!!! 💛 I love you!!! 💛";
+      question.innerHTML = "YAAAAYYYYYYY!!! 💛 I love you!!! 💛";
 
+      // Confetti bursts
       confetti({
         particleCount: 200,
         spread: 100,
@@ -105,6 +112,9 @@
           origin: { y: 0.5 }
         });
       }, 400);
+
+      // Play the song
+      song.play();
     });
   </script>
 
